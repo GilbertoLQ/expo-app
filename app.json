@@ -1,11 +1,12 @@
 {
   "expo": {
-    "name": "ProfitFirst",
-    "slug": "ProfitFirst",
+    "name": "Paypal Clone",
+    "displayName": "Paypal Clone",
+    "slug": "Paypal-Clone",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "profitfirst",
+    "scheme": "paypal-clone",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

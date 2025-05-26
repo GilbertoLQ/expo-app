@@ -1,5 +1,8 @@
 {
-  "name": "profitfirst",
+  "name": "Paypal-Clone",
+  "displayName": "Paypal Clone",
+  "description": "A clone of the Paypal app built with Expo Router and React Native.",
+  "author": "Gilberto Lopez Quintero",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {

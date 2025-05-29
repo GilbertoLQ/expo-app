@@ -1,4 +1,4 @@
-import { WalletHeader } from "@/src/components/headers/walletHeaders";
+import { WalletHeader } from "@/src/components/common/headers/walletHeaders";
 import { Stack } from "expo-router";
 
 export default function WalletLayout() {

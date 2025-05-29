@@ -1,30 +1,7 @@
+import SkeletonBox from "@/src/components/ui/skeletonBox";
 import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
 
 const { width } = Dimensions.get("window");
-
-const SkeletonBox = ({
-  height,
-  width,
-  style,
-}: {
-  height: number;
-  width?: number | string;
-  style?: any;
-}) => (
-  <View
-    style={[
-      {
-        height,
-        width: width || "100%",
-        backgroundColor: "#fafafa",
-        borderRadius: 8,
-        marginBottom: 16,
-        opacity: 0.7,
-      },
-      style,
-    ]}
-  />
-);
 
 export default function WalletScreen() {
   return (

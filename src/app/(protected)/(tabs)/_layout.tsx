@@ -1,4 +1,4 @@
-import { IconSymbol } from "@/src/components/ui/IconSymbol.ios";
+import { IconSymbol } from "@/src/components/ui/icons/IconSymbol.ios";
 import { Tabs } from "expo-router";
 import React from "react";
 import { Platform } from "react-native";

@@ -1,8 +1,9 @@
+import { SymbolViewProps } from "expo-symbols";
 import { StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
-import { IconSymbol } from "./IconSymbol.ios";
+import { IconSymbol } from "../icons/IconSymbol.ios";
 
 interface FloatingActionButtonProps {
-  icon: string;
+  icon: SymbolViewProps["name"];
   onPress: () => void;
   color?: string;
   size?: number;

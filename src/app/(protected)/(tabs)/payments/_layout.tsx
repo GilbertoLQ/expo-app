@@ -1,4 +1,4 @@
-import { PaymentsHeader } from "@/src/components/headers/paymentsHeader";
+import { PaymentsHeader } from "@/src/components/common/headers/paymentsHeader";
 import { Stack } from "expo-router";
 import { View } from "react-native";
 

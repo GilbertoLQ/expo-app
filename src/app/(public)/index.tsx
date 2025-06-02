@@ -1,6 +1,6 @@
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Animated,
   Keyboard,
@@ -14,15 +14,31 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+const VALID_EMAIL = "test@example.com";
+const VALID_PASSWORD = "Test123!";
+
 export default function LoginScreen() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [passwordValidation, setPasswordValidation] = useState({
+    minLength: false,
+    hasNumber: false,
+    hasSpecial: false,
+  });
   const inputRefs = useRef<Array<TextInput | null>>([null, null]);
   const translateY = useRef(new Animated.Value(0)).current;
   const errorOpacity = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    setPasswordValidation({
+      minLength: password.length >= 8,
+      hasNumber: /\d/.test(password),
+      hasSpecial: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+    });
+  }, [password]);
 
   const showError = (message: string) => {
     setError(message);
@@ -45,14 +61,22 @@ export default function LoginScreen() {
       showError("Please fill in all fields");
       return;
     }
-
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      showError("Please enter a valid email address");
+      return;
+    }
+    if (email !== VALID_EMAIL || password !== VALID_PASSWORD) {
+      showError("Invalid email or password");
+      return;
+    }
+    setError("");
+    setIsLoading(true);
     try {
-      setError("");
-      setIsLoading(true);
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       router.replace("/(protected)/(tabs)/home");
     } catch (err) {
-      showError("Invalid credentials");
+      showError("Something went wrong");
     } finally {
       setIsLoading(false);
     }
@@ -91,6 +115,7 @@ export default function LoginScreen() {
 
             <View style={styles.form}>
               <TextInput
+                testID="login-email"
                 ref={(ref) => {
                   inputRefs.current[0] = ref;
                 }}
@@ -107,6 +132,7 @@ export default function LoginScreen() {
               />
 
               <TextInput
+                testID="login-password"
                 ref={(ref) => {
                   inputRefs.current[1] = ref;
                 }}
@@ -121,8 +147,50 @@ export default function LoginScreen() {
                 onSubmitEditing={handleLogin}
               />
 
+              {password.length > 0 && (
+                <View style={styles.passwordRequirements}>
+                  <View style={styles.requirementRow}>
+                    <View
+                      style={[
+                        styles.checkCircle,
+                        passwordValidation.minLength && styles.validRequirement,
+                      ]}
+                    />
+                    <Text style={styles.requirementText}>
+                      At least 8 characters
+                    </Text>
+                  </View>
+
+                  <View style={styles.requirementRow}>
+                    <View
+                      style={[
+                        styles.checkCircle,
+                        passwordValidation.hasNumber && styles.validRequirement,
+                      ]}
+                    />
+                    <Text style={styles.requirementText}>
+                      Contains a number
+                    </Text>
+                  </View>
+
+                  <View style={styles.requirementRow}>
+                    <View
+                      style={[
+                        styles.checkCircle,
+                        passwordValidation.hasSpecial &&
+                          styles.validRequirement,
+                      ]}
+                    />
+                    <Text style={styles.requirementText}>
+                      Contains a special character
+                    </Text>
+                  </View>
+                </View>
+              )}
+
               <View style={styles.errorContainer}>
                 <Animated.Text
+                  testID="login-error"
                   style={[styles.errorText, { opacity: errorOpacity }]}
                 >
                   {error}
@@ -130,6 +198,7 @@ export default function LoginScreen() {
               </View>
 
               <TouchableOpacity
+                testID="login-button"
                 style={[styles.button, isLoading && styles.buttonDisabled]}
                 onPress={handleLogin}
                 disabled={isLoading}
@@ -140,6 +209,7 @@ export default function LoginScreen() {
               </TouchableOpacity>
 
               <TouchableOpacity
+                testID="signup-button"
                 style={styles.buttonSingup}
                 onPress={() => router.push("/")}
                 disabled={isLoading}
@@ -148,6 +218,7 @@ export default function LoginScreen() {
               </TouchableOpacity>
 
               <TouchableOpacity
+                testID="forgot-password-button"
                 style={styles.forgotButton}
                 onPress={() => router.push("/")}
               >
@@ -234,16 +305,41 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
   },
-  errorText: {
-    color: "#dc3545",
-    fontSize: 14,
-    textAlign: "center",
+  passwordRequirements: {
+    marginTop: 8,
+    paddingHorizontal: 4,
+  },
+  requirementRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 6,
+  },
+  checkCircle: {
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: "#999",
+    marginRight: 8,
+  },
+  validRequirement: {
+    backgroundColor: "#2e7d32",
+    borderColor: "#2e7d32",
+  },
+  requirementText: {
+    fontSize: 12,
+    color: "#666",
   },
   errorContainer: {
     height: 18,
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 8,
+  },
+  errorText: {
+    color: "#dc3545",
+    fontSize: 14,
+    textAlign: "center",
   },
   forgotButton: {
     alignItems: "center",

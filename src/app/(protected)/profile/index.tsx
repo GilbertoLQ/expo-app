@@ -15,6 +15,15 @@ export default function ProfileScreen() {
           size={24}
           position={{ top: 70, left: 20 }}
         />
+        <FloatingActionButton
+          icon="xmark"
+          onPress={() => {
+            router.replace("/(public)");
+          }}
+          color="#dc3545"
+          size={24}
+          position={{ top: 70, right: 20 }}
+        />
       </View>
     </View>
   );

@@ -5,10 +5,11 @@ import { StyleSheet, Text, View } from "react-native";
 export default function ProfileScreen() {
   const router = useRouter();
   return (
-    <View style={styles.container}>
-      <Text>Profile</Text>
+    <View testID="profile-screen" style={styles.container}>
+      <Text testID="profile-screen-title">Profile</Text>
       <View style={styles.buttonContainer}>
         <FloatingActionButton
+          testID="profile-back-button"
           icon="arrow.left"
           onPress={() => router.push("/(protected)/(tabs)/home")}
           color="#000"
@@ -16,6 +17,7 @@ export default function ProfileScreen() {
           position={{ top: 70, left: 20 }}
         />
         <FloatingActionButton
+          testID="profile-logout-button"
           icon="xmark"
           onPress={() => {
             router.replace("/(public)");

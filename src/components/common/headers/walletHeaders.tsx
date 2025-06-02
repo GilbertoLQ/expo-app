@@ -32,11 +32,15 @@ export function WalletHeader() {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={[styles.menuContainer, { width: width * 0.5 }]}>
+    <View testID="wallet-header" style={styles.container}>
+      <View
+        testID="wallet-header-menu"
+        style={[styles.menuContainer, { width: width * 0.5 }]}
+      >
         {menuOptions.map((option, index) => (
           <TouchableOpacity
             key={index}
+            testID={`wallet-header-${option.label.toLowerCase()}-tab`}
             style={styles.menuItem}
             onPress={() => router.replace(option.route as any)}
           >

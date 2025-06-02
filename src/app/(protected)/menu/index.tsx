@@ -5,9 +5,10 @@ import { StyleSheet, Text, View } from "react-native";
 export default function MenuScreen() {
   const router = useRouter();
   return (
-    <View style={styles.container}>
+    <View testID="menu-screen" style={styles.container}>
       <View style={styles.buttonContainer}>
         <FloatingActionButton
+          testID="menu-back-button"
           icon="arrow.left"
           onPress={() => router.push("/(protected)/(tabs)/home")}
           color="#000"
@@ -15,7 +16,7 @@ export default function MenuScreen() {
           position={{ top: 70, left: 20 }}
         />
       </View>
-      <Text>menu</Text>
+      <Text testID="menu-screen-title">menu</Text>
     </View>
   );
 }

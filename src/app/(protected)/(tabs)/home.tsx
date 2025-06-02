@@ -6,10 +6,11 @@ export default function HomeScreen() {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
-      <Text>Home Screen</Text>
+    <View testID="home-screen" style={styles.container}>
+      <Text testID="home-screen-title">Home Screen</Text>
       <View style={styles.buttonContainer}>
         <FloatingActionButton
+          testID="home-menu-button"
           icon="list.dash"
           onPress={() => router.push("/(protected)/menu")}
           color="#000"
@@ -17,6 +18,7 @@ export default function HomeScreen() {
           position={{ top: 70, left: 20 }}
         />
         <FloatingActionButton
+          testID="home-profile-button"
           icon="person.crop.circle"
           onPress={() => router.push("/(protected)/profile")}
           color="#000"

@@ -9,11 +9,11 @@ export default function WalletScreen() {
       style={styles.scrollView}
       contentContainerStyle={styles.scrollContent}
     >
-      <View style={styles.container}>
+      <View testID="wallet-overview-container" style={styles.container}>
         {Array(2)
           .fill(null)
           .map((_, index) => (
-            <View key={index}>
+            <View key={index} testID={`wallet-overview-section-${index}`}>
               <SkeletonBox height={32} width={180} style={{ marginTop: 24 }} />
               <SkeletonBox height={48} width={width - 40} />
               <SkeletonBox height={24} width={120} />

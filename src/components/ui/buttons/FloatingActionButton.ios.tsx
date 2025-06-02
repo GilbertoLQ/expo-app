@@ -18,6 +18,7 @@ interface FloatingActionButtonProps {
     height?: number;
   };
   style?: ViewStyle;
+  testID?: string;
 }
 
 export function FloatingActionButton({
@@ -28,9 +29,11 @@ export function FloatingActionButton({
   position,
   buttonSize,
   style,
+  testID,
 }: FloatingActionButtonProps) {
   return (
     <TouchableOpacity
+      testID={testID}
       style={[
         styles.fab,
         position && { ...position },
@@ -41,7 +44,12 @@ export function FloatingActionButton({
       onPress={onPress}
       activeOpacity={0.8}
     >
-      <IconSymbol name={icon} size={size} color="#fff" />
+      <IconSymbol
+        testID={testID ? `${testID}-icon` : undefined}
+        name={icon}
+        size={size}
+        color="#fff"
+      />
     </TouchableOpacity>
   );
 }

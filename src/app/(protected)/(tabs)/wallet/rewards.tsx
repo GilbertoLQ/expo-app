@@ -4,11 +4,14 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 export default function RewardsScreen() {
   return (
     <ScrollView
+      testID="wallet-rewards-scroll"
       style={styles.scrollView}
       contentContainerStyle={styles.scrollContent}
     >
-      <View style={styles.container}>
-        <Text style={styles.title}>Rewards</Text>
+      <View testID="wallet-rewards-container" style={styles.container}>
+        <Text testID="wallet-rewards-title" style={styles.title}>
+          Rewards
+        </Text>
         {/* Rewards content */}
       </View>
     </ScrollView>

@@ -4,12 +4,14 @@ type SkeletonBoxProps = {
   height?: number | string;
   width?: number | string;
   style?: StyleProp<ViewStyle>;
+  testID?: string;
 };
 
 export default function SkeletonBox({
   height,
   width,
   style,
+  testID,
 }: SkeletonBoxProps) {
   // Ensure height and width are either number or percentage string
   const getDimension = (
@@ -23,6 +25,7 @@ export default function SkeletonBox({
 
   return (
     <View
+      testID={testID}
       style={[
         {
           height: getDimension(height),

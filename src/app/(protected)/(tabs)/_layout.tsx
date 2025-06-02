@@ -22,6 +22,7 @@ export default function TabsLayout() {
         name="home"
         options={{
           title: "Home",
+          tabBarAccessibilityLabel: "Home Tab",
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="house.fill" color={color} />
           ),
@@ -31,6 +32,7 @@ export default function TabsLayout() {
         name="payments"
         options={{
           title: "Payments",
+          tabBarAccessibilityLabel: "Payments Tab",
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="dollarsign" color={color} />
           ),
@@ -40,6 +42,7 @@ export default function TabsLayout() {
         name="wallet"
         options={{
           title: "Wallet",
+          tabBarAccessibilityLabel: "Wallet Tab",
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="wallet.bifold" color={color} />
           ),

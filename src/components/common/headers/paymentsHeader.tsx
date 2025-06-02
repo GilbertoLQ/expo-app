@@ -29,12 +29,18 @@ export function PaymentsHeader() {
   const currentRoute = pathname.split("/").pop() || "send";
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Payments</Text>
-      <View style={[styles.menuContainer, { width: width * 0.5 }]}>
+    <View testID="payments-header" style={styles.container}>
+      <Text testID="payments-header-title" style={styles.title}>
+        Payments
+      </Text>
+      <View
+        testID="payments-header-menu"
+        style={[styles.menuContainer, { width: width * 0.5 }]}
+      >
         {menuOptions.map((option, index) => (
           <TouchableOpacity
             key={index}
+            testID={`payments-header-${option.label.toLowerCase()}-tab`}
             style={styles.menuItem}
             onPress={() => router.replace(option.route as any)}
           >

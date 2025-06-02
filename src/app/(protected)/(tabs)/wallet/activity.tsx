@@ -4,11 +4,14 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 export default function ActivityScreen() {
   return (
     <ScrollView
+      testID="wallet-activity-scroll"
       style={styles.scrollView}
       contentContainerStyle={styles.scrollContent}
     >
-      <View style={styles.container}>
-        <Text style={styles.title}>Activity</Text>
+      <View testID="wallet-activity-container" style={styles.container}>
+        <Text testID="wallet-activity-title" style={styles.title}>
+          Activity
+        </Text>
         {/* Activity content */}
       </View>
     </ScrollView>
